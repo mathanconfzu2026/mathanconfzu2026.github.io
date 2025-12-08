@@ -53,10 +53,10 @@ a:hover {
 }
 
 .top-logo {
-    width: 40px;
+    width: 36px;          /* трошки менше, щоб меню мало більше місця */
     height: auto;
-    border-radius: 2px;
-    background-color: #ffffff;
+    border-radius: 50%;   /* робимо його гарним кругом */
+    background-color: transparent; /* фон прозорий, без білого квадрата */
 }
 
 .top-site-name {
@@ -281,6 +281,7 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
+
 
 
 
