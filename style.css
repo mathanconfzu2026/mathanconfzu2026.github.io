@@ -62,8 +62,8 @@ a:hover {
 .top-site-name {
     font-weight: 600;
     letter-spacing: 0.03em;
+    white-space: nowrap; /*Забороняємо перенос назви */
 }
-
 .top-nav {
     display: flex;
     flex-wrap: nowrap; /* Щоб не переносилось у 2 рядки */
@@ -280,4 +280,5 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
+
 
