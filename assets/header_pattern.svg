@@ -1,1 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120">
+  <rect width="400" height="120" fill="none" />
+
+  <!-- Коло |z| = 1 -->
+  <circle cx="70" cy="70" r="28"
+          fill="none"
+          stroke="#ffffff"
+          stroke-opacity="0.20"
+          stroke-width="1.5" />
+  <line x1="42" y1="70" x2="98" y2="70"
+        stroke="#ffffff"
+        stroke-opacity="0.20"
+        stroke-width="1" />
+  <line x1="70" y1="42" x2="70" y2="98"
+        stroke="#ffffff"
+        stroke-opacity="0.20"
+        stroke-width="1" />
+
+  <!-- Підписи для кола -->
+  <text x="40" y="35"
+        fill="#ffffff"
+        fill-opacity="0.35"
+        font-size="12"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    |z| &lt; 1
+  </text>
+  <text x="46" y="90"
+        fill="#ffffff"
+        fill-opacity="0.30"
+        font-size="11"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    Re z
+  </text>
+  <text x="78" y="50"
+        fill="#ffffff"
+        fill-opacity="0.30"
+        font-size="11"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    Im z
+  </text>
+
+  <!-- Графік синуса -->
+  <path d="M150 90
+           C160 60 180 60 190 90
+           S220 120 230 90
+           S260 60 270 90"
+        fill="none"
+        stroke="#ffffff"
+        stroke-opacity="0.22"
+        stroke-width="1.5" />
+  <line x1="145" y1="90" x2="275" y2="90"
+        stroke="#ffffff"
+        stroke-opacity="0.16"
+        stroke-width="1" />
+  <text x="155" y="50"
+        fill="#ffffff"
+        fill-opacity="0.35"
+        font-size="12"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    y = Im f(z)
+  </text>
+
+  <!-- Невеликий інтеграл -->
+  <text x="310" y="35"
+        fill="#ffffff"
+        fill-opacity="0.35"
+        font-size="16"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    ∮ f(z)\u2009dz
+  </text>
+  <text x="300" y="65"
+        fill="#ffffff"
+        fill-opacity="0.30"
+        font-size="12"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    Γ : |z| = 1
+  </text>
+
+  <!-- Ще трохи формул -->
+  <text x="260" y="100"
+        fill="#ffffff"
+        fill-opacity="0.28"
+        font-size="11"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    f(z) = u(x,y) + i v(x,y)
+  </text>
+  <text x="15" y="105"
+        fill="#ffffff"
+        fill-opacity="0.30"
+        font-size="11"
+        font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    ∂u/∂x = ∂v/∂y
+  </text>
+</svg>
 
