@@ -66,24 +66,25 @@ a:hover {
 
 .top-nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap; /* Щоб не переносилось у 2 рядки */
+    gap: 18px;         /* Було 10px + wrap → тепер менше */
     justify-content: center;
-    flex: 1 1 auto; /* меню стискається, щоб звільнити місце під мовний перемикач */
-    font-size: 0.92rem;
+    align-items: center;
+    flex: 1 1 auto;
+    font-size: 0.88rem; /* Трохи менший шрифт */
 }
 
 .top-nav a {
     color: #ffffff;
-    padding: 4px 6px;
+    padding: 2px 4px;   /* Менші внутрішні відступи */
     border-radius: 4px;
+    white-space: nowrap; /* Не дозволяємо кожному пункту переноситись */
 }
 
 .top-nav a:hover {
     background-color: rgba(255, 255, 255, 0.12);
     text-decoration: none;
 }
-
 .top-lang {
     display: flex;
     gap: 4px;
@@ -279,3 +280,4 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
+
