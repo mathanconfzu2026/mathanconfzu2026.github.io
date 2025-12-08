@@ -1,4 +1,4 @@
-/* БАЗА */
+/* ===== БАЗА ===== */
 
 * {
     box-sizing: border-box;
@@ -28,7 +28,7 @@ a:hover {
     padding: 0 16px;
 }
 
-/* ВЕРХНЯ ПАНЕЛЬ */
+/* ===== ВЕРХНЯ ПАНЕЛЬ ===== */
 
 .top-bar {
     background-color: #002244;
@@ -43,8 +43,7 @@ a:hover {
     padding: 8px 0;
     column-gap: 16px;
     row-gap: 8px;
-    flex-wrap: wrap;
-    font-size: 0.9rem;
+    flex-wrap: nowrap; /* десктоп: все в один рядок */
 }
 
 .top-bar-left {
@@ -70,6 +69,8 @@ a:hover {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    flex: 1 1 auto; /* меню стискається, щоб звільнити місце під мовний перемикач */
+    font-size: 0.92rem;
 }
 
 .top-nav a {
@@ -87,6 +88,9 @@ a:hover {
     display: flex;
     gap: 4px;
     align-items: center;
+    white-space: nowrap; /* UA | EN не переноситься */
+    flex: 0 0 auto;
+    font-size: 0.9rem;
 }
 
 .top-lang a {
@@ -97,7 +101,7 @@ a:hover {
     font-weight: 600;
 }
 
-/* БАНЕР СТОРІНКИ */
+/* ===== БАНЕР СТОРІНКИ ===== */
 
 .page-banner {
     background-color: #003366;
@@ -139,7 +143,7 @@ a:hover {
 
 .banner-side {
     text-align: right;
-    min-width: 120px;
+    min-width: 140px;
 }
 
 .banner-date {
@@ -151,7 +155,7 @@ a:hover {
     opacity: 0.9;
 }
 
-/* ЛЕЙАУТ КОНТЕНТУ */
+/* ===== ЛЕЙАУТ КОНТЕНТУ ===== */
 
 .page-layout {
     padding: 20px 0 32px;
@@ -166,7 +170,7 @@ a:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* СЕКЦІЇ */
+/* ===== СЕКЦІЇ ===== */
 
 .page-section + .page-section {
     margin-top: 20px;
@@ -205,7 +209,7 @@ a:hover {
     margin-bottom: 4px;
 }
 
-/* КНОПКИ-ПОСИЛАННЯ */
+/* ===== КНОПКИ-ПОСИЛАННЯ ===== */
 
 .link-button {
     display: inline-block;
@@ -228,12 +232,13 @@ a:hover {
     color: #666666;
 }
 
-/* ФУТЕР */
+/* ===== ФУТЕР ===== */
 
 .site-footer {
     background-color: #00172b;
     color: #ffffff;
     padding: 10px 0;
+    margin-top: 8px;
 }
 
 .footer-inner {
@@ -241,16 +246,23 @@ a:hover {
     text-align: center;
 }
 
-/* АДАПТИВ */
+/* ===== АДАПТИВ ===== */
 
 @media (max-width: 768px) {
     .top-bar-inner {
         flex-direction: column;
         align-items: flex-start;
+        flex-wrap: wrap; /* на мобілці дозволяємо перенос */
     }
 
     .top-nav {
         justify-content: flex-start;
+        width: 100%;
+    }
+
+    .top-lang {
+        align-self: flex-end;
+        margin-top: 4px;
     }
 
     .page-banner-inner {
