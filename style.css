@@ -34,6 +34,11 @@ a:hover {
     background-color: #002244;
     color: #ffffff;
     border-bottom: 3px solid #ffcc33;
+    /* Математичний візерунок поверх */
+    background-image: url("assets/header_pattern.svg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-size: auto 120px;
 }
 
 .top-bar-inner {
@@ -281,6 +286,7 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
+
 
 
 
