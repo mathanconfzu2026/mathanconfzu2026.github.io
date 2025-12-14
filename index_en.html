@@ -16,13 +16,14 @@
             <span class="top-site-name">MathConf 2026</span>
             <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
         </div>
-        <nav class="top-nav" id="topNav">
+        <nav id="site-nav" class="top-nav" id="topNav">
             <a href="#about">About</a>
             <a href="#topics">Topics</a>
             <a href="#dates">Important dates</a>
             <a href="#organisation">Committees</a>
             <a href="#programme">Programme</a>
-            <a href="#requirements">Submission guide</a>
+                        <a href="#results">Outcomes</a>
+<a href="#requirements">Submission guide</a>
             <a href="#registration">Registration</a>
             <a href="#contacts">Contacts</a>
         </nav>
@@ -179,6 +180,17 @@ Victoria Serhiivna Desyatka – PhD student at the Department of Mathematical An
     -->
 </section>
 
+
+<section id="results" class="page-section">
+    <h2>Conference outcomes</h2>
+    <ul>
+        <li>publication of accepted contributions in the department conference proceedings;</li>
+        <li>certificates of participation;</li>
+        <li>the proceedings will be published electronically and sent to participants together with the certificates;</li>
+        <li>participation in the conference is free of charge for all participants.</li>
+    </ul>
+</section>
+
 <section id="requirements" class="page-section">
     <h2>Submission guide</h2>
 
@@ -281,6 +293,36 @@ Victoria Serhiivna Desyatka – PhD student at the Department of Mathematical An
     });
   })();
 </script>
+
+<script>
+(function () {
+  const header = document.querySelector('.top-bar');
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!header || !btn || !nav) return;
+
+  function closeMenu() {
+    header.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close after clicking a menu item (mobile)
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => closeMenu());
+  });
+
+  // Close on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+})();
+</script>
+
 </body>
 </html>
 

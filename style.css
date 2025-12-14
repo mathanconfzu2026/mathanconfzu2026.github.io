@@ -270,11 +270,12 @@ a:hover {
 /* ===== АДАПТИВ ===== */
 
 @media (max-width: 768px) {
-    .top-bar-inner {
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .top-bar-inner { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .top-nav { display: none; width: 100%; flex-direction: column; gap: 0; margin-top: 6px; }
+    .top-nav a { padding: 10px 6px; border-top: 1px solid rgba(255,255,255,0.12); width: 100%; }
+    .top-bar.nav-open .top-nav { display: flex; }
+    .top-lang { margin-left: auto; }
 
     .top-bar-left{
         flex: 1 1 auto;
@@ -318,3 +319,7 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
+
+
+/* Make anchor jumps visible under sticky header */
+.page-section { scroll-margin-top: 92px; }

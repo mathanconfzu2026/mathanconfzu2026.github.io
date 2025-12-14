@@ -16,13 +16,14 @@
             <span class="top-site-name">MathConf 2026</span>
             <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
         </div>
-        <nav class="top-nav" id="topNav">
+        <nav id="site-nav" class="top-nav" id="topNav">
             <a href="#about">Про конференцію</a>
             <a href="#topics">Напрями роботи</a>
             <a href="#dates">Важливі дати</a>
             <a href="#organisation">Оргкомітет</a>
             <a href="#programme">Програма</a>
-            <a href="#requirements">Вимоги до тез</a>
+                        <a href="#results">Результати</a>
+<a href="#requirements">Вимоги до тез</a>
             <a href="#registration">Реєстрація</a>
             <a href="#contacts">Контакти</a>
         </nav>
@@ -169,6 +170,17 @@
 <p>Детальна програма буде опублікована після завершення прийому тез та формування секцій.</p>
 </section>
 
+
+<section id="results" class="page-section">
+    <h2>Результати конференції</h2>
+    <ul>
+        <li>публікацію доповідей у збірнику конференції кафедри;</li>
+        <li>отримання сертифікатів участі;</li>
+        <li>збірник конференції буде опублікований в електронному вигляді та разом із сертифікатами надісланий учасникам;</li>
+        <li>участь у конференції безкоштовна для всіх учасників.</li>
+    </ul>
+</section>
+
 <section id="requirements" class="page-section">
 <h2>Вимоги до оформлення тез</h2>
 
@@ -178,7 +190,7 @@
     <li>Обсяг тез — до 2 сторінок (включно).</li>
     <li>Тези подаються у форматі LaTeX (.tex) та PDF.</li>
     <li>Зразок оформлення LaTeX доступний для завантаження нижче.</li>
-    <li>Список джерел у порядку появи в тексті.</li>
+    <li>Список джерел оформлюється в порядку їх появи у тексті.</li>
     <li>Тези проходять перевірку на антиплагіат.</li>
 </ul>
 
@@ -244,6 +256,36 @@
     });
   })();
 </script>
+
+<script>
+(function () {
+  const header = document.querySelector('.top-bar');
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!header || !btn || !nav) return;
+
+  function closeMenu() {
+    header.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close after clicking a menu item (mobile)
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => closeMenu());
+  });
+
+  // Close on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+})();
+</script>
+
 </body>
 </html>
 
