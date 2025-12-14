@@ -30,11 +30,7 @@ a:hover {
 
 /* ===== ВЕРХНЯ ПАНЕЛЬ ===== */
 
-.top-bar{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
+.top-bar {
     background-color: #002244;
     color: #ffffff;
     border-bottom: 3px solid #ffcc33;
@@ -181,6 +177,16 @@ a:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
+
+/* Links inside content should look like standard links */
+.page-content a{
+    color: #0b57d0;
+    text-decoration: underline;
+}
+.page-content a:hover{
+    text-decoration: underline;
+}
+
 /* ===== СЕКЦІЇ ===== */
 
 .page-section + .page-section {
@@ -297,20 +303,73 @@ a:hover {
 
 
 
-/* keep button links readable */
-.link-button, .link-button:visited, .link-button:hover{
-  color:#ffffff;
-  text-decoration:none;
+/* ===== NAV FIXES (desktop wrap + centered) ===== */
+.top-bar{
+  position: sticky;
+  top: 0;
+  z-index: 2000;
 }
 
-@media (min-width: 769px){
-  .nav-toggle{ display:none !important; }
-  .top-nav{ display:flex !important; }
+.top-bar-inner{
+  justify-content: space-between;
+  gap: 16px;
 }
 
-@media (max-width: 1100px){
-  .top-bar-inner{ flex-wrap: wrap; }
-  .top-nav{ flex-wrap: wrap; justify-content:center; }
+/* center nav and allow wrap on mid screens */
+.top-nav{
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;      /* allow 2 rows when needed */
+  white-space: normal;  /* container can wrap */
 }
 
-.inst{ font-weight:600; }
+.top-nav a{
+  white-space: nowrap;  /* each item stays in one piece */
+}
+
+/* burger button (mobile only) */
+.nav-toggle{
+  display: none;
+  margin-left: 10px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* avoid anchor hidden under sticky header */
+.page-section{
+  scroll-margin-top: 92px;
+}
+
+/* link styling in content */
+.page-content a{
+  text-decoration: underline;
+}
+
+@media (max-width: 768px){
+  .nav-toggle{ display: inline-flex; align-items:center; justify-content:center; }
+  /* hide nav until opened */
+  .top-nav{
+    display: none;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0 6px;
+  }
+  .top-bar.nav-open .top-nav{
+    display: flex;
+  }
+  .top-bar-inner{
+    flex-wrap: wrap;
+  }
+  .top-lang{
+    margin-left: auto;
+  }
+}
