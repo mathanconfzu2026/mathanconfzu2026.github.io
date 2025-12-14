@@ -16,7 +16,7 @@
             <span class="top-site-name">MathConf 2026</span>
             <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
         </div>
-        <nav id="site-nav" class="top-nav" id="topNav">
+        <nav class="top-nav" id="topNav">
             <a href="#about">About</a>
             <a href="#topics">Topics</a>
             <a href="#dates">Important dates</a>
@@ -283,15 +283,36 @@ Victoria Serhiivna Desyatka – PhD student at the Department of Mathematical An
 </footer>
 
 <script>
-  (function(){
-    const header = document.querySelector('.top-bar');
-    const btn = document.querySelector('.nav-toggle');
-    if(!header || !btn) return;
-    btn.addEventListener('click', function(){
-      const isOpen = header.classList.toggle('nav-open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  })();
+(function(){
+  const header = document.querySelector('.top-bar');
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('topNav');
+  if(!header || !btn || !nav) return;
+
+  const closeMenu = () => {
+    header.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+
+  btn.addEventListener('click', function(){
+    const isOpen = header.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close after clicking any menu item (mobile)
+  nav.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    closeMenu();
+  });
+
+  // Close if user clicks outside header (mobile)
+  document.addEventListener('click', function(e){
+    if(!header.classList.contains('nav-open')) return;
+    if(header.contains(e.target)) return;
+    closeMenu();
+  });
+})();
 </script>
 
 <script>
