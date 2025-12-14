@@ -187,6 +187,11 @@ a:hover {
     text-decoration: underline;
 }
 
+.page-content a.link-button{
+    color: #ffffff;
+    text-decoration: none;
+}
+
 /* ===== СЕКЦІЇ ===== */
 
 .page-section + .page-section {
