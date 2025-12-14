@@ -31,6 +31,9 @@ a:hover {
 /* ===== ВЕРХНЯ ПАНЕЛЬ ===== */
 
 .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: #002244;
     color: #ffffff;
     border-bottom: 3px solid #ffcc33;
@@ -68,6 +71,17 @@ a:hover {
     font-weight: 600;
     letter-spacing: 0.03em;
     white-space: nowrap; /*Забороняємо перенос назви */
+}
+
+.nav-toggle{
+    display:none;
+    border:1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+    color:#fff;
+    border-radius:6px;
+    padding:6px 10px;
+    cursor:pointer;
+    line-height:1;
 }
 
 .top-nav {
@@ -257,19 +271,37 @@ a:hover {
 
 @media (max-width: 768px) {
     .top-bar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        flex-wrap: wrap; /* на мобілці дозволяємо перенос */
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
     }
 
-    .top-nav {
-        justify-content: flex-start;
+    .top-bar-left{
+        flex: 1 1 auto;
+    }
+
+    .nav-toggle{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .top-nav{
+        display: none;          /* ховаємо меню за замовчуванням */
         width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 0 6px;
+    }
+
+    .top-bar.nav-open .top-nav{
+        display: flex;          /* показуємо при відкритті */
     }
 
     .top-lang {
-        align-self: flex-end;
-        margin-top: 4px;
+        margin-left: auto;
+        align-self: center;
+        margin-top: 0;
     }
 
     .page-banner-inner {
@@ -286,8 +318,3 @@ a:hover {
         padding: 16px 14px 22px;
     }
 }
-
-
-
-
-
