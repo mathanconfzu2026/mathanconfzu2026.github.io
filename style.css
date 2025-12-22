@@ -271,9 +271,9 @@ a:hover {
 .participants-frame {
   border: 1px solid #ddd;
   border-radius: 6px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
-
 .note {
   font-size: 0.95rem;
   color: #444;
