@@ -21,25 +21,24 @@ body {
         position: fixed;
         top: 108px;
         bottom: 16px;
-        width: clamp(170px, 20vw, 380px);
+        width: clamp(170px, 22vw, 420px);
         border-radius: 10px;
         pointer-events: none;
         z-index: 0;
         background-repeat: no-repeat;
-        background-size: auto 100%;
+        background-size: cover;
         background-color: #d9deea;
-        box-shadow: inset 0 0 0 9999px rgba(10, 24, 45, 0.28);
     }
 
     body::before {
         left: 16px;
-        background-image: url("assets/images/zdu1.jpg");
+        background-image: linear-gradient(rgba(10, 24, 45, 0.30), rgba(10, 24, 45, 0.30)), url("assets/images/left.jpg"), url("assets/university_logo.png");
         background-position: left center;
     }
 
     body::after {
         right: 16px;
-        background-image: url("assets/images/zdu2.jpg");
+        background-image: linear-gradient(rgba(10, 24, 45, 0.30), rgba(10, 24, 45, 0.30)), url("assets/images/right.jpg"), url("assets/university_logo.png");
         background-position: right center;
     }
 
