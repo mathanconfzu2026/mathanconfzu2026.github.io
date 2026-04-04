@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Zhytomyr Photo Gallery — MathConf 2026</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body>
+<header class="top-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-left">
+      <img alt="University" class="top-logo" src="assets/university_logo.png"/>
+      <span class="top-site-name">MathConf 2026</span>
+      <button aria-expanded="false" aria-label="Menu" class="nav-toggle" type="button">☰</button>
+    </div>
+    <nav class="top-nav" id="topNav">
+      <a href="index_en.html">Home</a>
+      <a href="participants.html">Participants</a>
+      <a href="#gallery">Photo Gallery</a>
+      <a href="index_en.html#contacts">Contacts</a>
+    </nav>
+    <div class="top-lang">
+      <a href="gallery_uk.html">UA</a> |
+      <span class="active-lang">EN</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-banner">
+    <div class="container page-banner-inner">
+      <div class="banner-main">
+        <div class="banner-acronym">MathConf 2026</div>
+        <h1 class="banner-title">Zhytomyr Photo Gallery</h1>
+        <p class="banner-subtitle">The host city and university spaces for conference guests.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container page-layout">
+    <div class="page-content">
+      <section class="page-section" id="gallery">
+        <h2>Photo Gallery</h2>
+        <p>Images are loaded from <code>assets/images/</code>. Add more cards below if needed.</p>
+
+        <div class="city-gallery">
+          <figure class="city-gallery-item">
+            <img alt="University building — left view" loading="lazy" onerror="this.onerror=null;this.src='assets/university_logo.png';" src="assets/images/zdu1.jpg"/>
+            <figcaption>Zhytomyr Ivan Franko State University (view 1)</figcaption>
+          </figure>
+          <figure class="city-gallery-item">
+            <img alt="University building — right view" loading="lazy" onerror="this.onerror=null;this.src='assets/university_logo.png';" src="assets/images/zdu2.jpg"/>
+            <figcaption>Zhytomyr Ivan Franko State University (view 2)</figcaption>
+          </figure>
+          <figure class="city-gallery-item">
+            <img alt="Zhytomyr city space" loading="lazy" onerror="this.onerror=null;this.src='assets/university_logo.png';" src="assets/images/zdu1.jpg"/>
+            <figcaption>Zhytomyr city atmosphere</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 International Scientific Conference. Zhytomyr Ivan Franko State University.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const header = document.querySelector('.top-bar');
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('topNav');
+  if(!header || !btn || !nav) return;
+
+  const closeMenu = () => {
+    header.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+
+  btn.addEventListener('click', function(){
+    const isOpen = header.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  nav.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(!a) return;
+    closeMenu();
+  });
+})();
+</script>
+</body>
+</html>
