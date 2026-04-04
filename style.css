@@ -14,31 +14,40 @@ body {
 }
 
 /* Бокові фонові фото університету (десктоп) */
-@media (min-width: 1320px) {
-    body {
-        background-image:
-            linear-gradient(rgba(10, 24, 45, 0.34), rgba(10, 24, 45, 0.34)),
-            linear-gradient(rgba(10, 24, 45, 0.34), rgba(10, 24, 45, 0.34)),
-            url("assets/images/zdu1.jpg"),
-            url("assets/images/zdu2.jpg"),
-            url("assets/university_logo.png"),
-            url("assets/university_logo.png");
-        background-size:
-            clamp(190px, 22vw, 420px) calc(100vh - 200px),
-            clamp(190px, 22vw, 420px) calc(100vh - 200px),
-            clamp(190px, 22vw, 420px) calc(100vh - 200px),
-            clamp(190px, 22vw, 420px) calc(100vh - 200px),
-            clamp(190px, 22vw, 420px) calc(100vh - 200px),
-            clamp(190px, 22vw, 420px) calc(100vh - 200px);
-        background-position:
-            left 16px top 180px,
-            right 16px top 180px,
-            left 16px top 180px,
-            right 16px top 180px,
-            left 16px top 180px,
-            right 16px top 180px;
-        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-        background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+@media (min-width: 1200px) {
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        top: 108px;
+        bottom: 16px;
+        width: clamp(170px, 20vw, 380px);
+        border-radius: 10px;
+        pointer-events: none;
+        z-index: 0;
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        background-color: #d9deea;
+        box-shadow: inset 0 0 0 9999px rgba(10, 24, 45, 0.28);
+    }
+
+    body::before {
+        left: 16px;
+        background-image: url("assets/images/zdu1.jpg");
+        background-position: left center;
+    }
+
+    body::after {
+        right: 16px;
+        background-image: url("assets/images/zdu2.jpg");
+        background-position: right center;
+    }
+
+    .top-bar,
+    main,
+    .site-footer {
+        position: relative;
+        z-index: 1;
     }
 }
 
