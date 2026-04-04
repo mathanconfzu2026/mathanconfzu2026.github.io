@@ -9,23 +9,30 @@
 </head>
 <body>
 <header class="top-bar">
-  <div class="container top-bar-inner">
-    <div class="top-bar-left">
-      <img alt="University" class="top-logo" src="assets/university_logo.png"/>
-      <span class="top-site-name">MathConf 2026</span>
-      <button aria-expanded="false" aria-label="Menu" class="nav-toggle" type="button">☰</button>
-    </div>
-    <nav class="top-nav" id="topNav">
-      <a href="index_en.html">Home</a>
-      <a href="participants.html">Participants</a>
-      <a href="#gallery">Photo Gallery</a>
-      <a href="index_en.html#contacts">Contacts</a>
-    </nav>
-    <div class="top-lang">
-      <a href="gallery_uk.html">UA</a> |
-      <span class="active-lang">EN</span>
-    </div>
-  </div>
+<div class="container top-bar-inner">
+<div class="top-bar-left">
+<img alt="University" class="top-logo" src="assets/university_logo.png"/>
+<span class="top-site-name">MathConf 2026</span>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle" type="button">☰</button>
+</div>
+<nav class="top-nav" id="topNav">
+<a href="index_en.html#about">About</a>
+<a href="index_en.html#topics">Topics</a>
+<a href="index_en.html#dates">Important dates</a>
+<a href="index_en.html#committees">Committees</a>
+<a href="index_en.html#programme">Programme</a>
+<a href="index_en.html#results">Outcomes</a>
+<a href="index_en.html#requirements">Submission guide</a>
+<a href="index_en.html#registration">Registration</a>
+<a href="participants.html">Participants</a>
+<a href="index_en.html#contacts">Contacts</a>
+<a href="gallery_en.html">Photo Gallery</a>
+</nav>
+<div class="top-lang">
+<a href="gallery_uk.html">UA</a> |
+<span class="active-lang">EN</span>
+</div>
+</div>
 </header>
 
 <main>
@@ -44,7 +51,8 @@
       <section class="page-section" id="gallery">
         <h2>Photo Gallery</h2>
         <p>Images are loaded from <code>assets/images/</code>.</p>
-
+        <p><a class="link-button" href="https://depositphotos.com/folder/422604428.html" rel="noopener noreferrer" target="_blank">Open the Depositphotos collection</a></p>
+        <p class="note">Click a preview to open an enlarged photo.</p>
         <div class="city-gallery">
           <figure class="city-gallery-item">
             <img alt="University building — left view" loading="lazy" onerror="this.onerror=null;this.src='assets/university_logo.png';" src="assets/images/zdu1.jpg"/>
@@ -64,6 +72,14 @@
   </div>
 </main>
 
+<div class="lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview dialog">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close preview">×</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImage" alt="" src=""/>
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+</div>
+
 <footer class="site-footer">
   <div class="container footer-inner">
     <p>© 2026 International Scientific Conference. Zhytomyr Ivan Franko State University.</p>
@@ -75,22 +91,72 @@
   const header = document.querySelector('.top-bar');
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('topNav');
-  if(!header || !btn || !nav) return;
+  if(header && btn && nav){
+    const closeMenu = () => {
+      header.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
 
-  const closeMenu = () => {
-    header.classList.remove('nav-open');
-    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function(){
+      const isOpen = header.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.addEventListener('click', function(e){
+      const a = e.target.closest('a');
+      if(!a) return;
+      closeMenu();
+    });
+  }
+
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const previewImages = document.querySelectorAll('.city-gallery-item img');
+
+  if(!lightbox || !lightboxImage || !lightboxCaption || !lightboxClose || previewImages.length === 0) return;
+
+  const openLightbox = (img) => {
+    const caption = img.closest('figure')?.querySelector('figcaption')?.textContent?.trim() || '';
+    lightboxImage.src = img.currentSrc || img.src;
+    lightboxImage.alt = img.alt || caption;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
   };
 
-  btn.addEventListener('click', function(){
-    const isOpen = header.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+    document.body.classList.remove('no-scroll');
+  };
+
+  previewImages.forEach((img) => {
+    img.classList.add('zoomable-image');
+    img.tabIndex = 0;
+
+    img.addEventListener('click', () => openLightbox(img));
+    img.addEventListener('keydown', (event) => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
   });
 
-  nav.addEventListener('click', function(e){
-    const a = e.target.closest('a');
-    if(!a) return;
-    closeMenu();
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (event) => {
+    if(event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape' && lightbox.classList.contains('is-open')){
+      closeLightbox();
+    }
   });
 })();
 </script>

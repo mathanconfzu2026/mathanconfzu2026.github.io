@@ -9,23 +9,30 @@
 </head>
 <body>
 <header class="top-bar">
-  <div class="container top-bar-inner">
-    <div class="top-bar-left">
-      <img alt="University" class="top-logo" src="assets/university_logo.png"/>
-      <span class="top-site-name">MathConf 2026</span>
-      <button aria-expanded="false" aria-label="Menu" class="nav-toggle" type="button">☰</button>
-    </div>
-    <nav class="top-nav" id="topNav">
-      <a href="index_uk.html">Головна</a>
-      <a href="participants.html">Учасники</a>
-      <a href="#gallery">Фотогалерея</a>
-      <a href="index_uk.html#contacts">Контакти</a>
-    </nav>
-    <div class="top-lang">
-      <span class="active-lang">UA</span> |
-      <a href="gallery_en.html">EN</a>
-    </div>
-  </div>
+<div class="container top-bar-inner">
+<div class="top-bar-left">
+<img alt="University" class="top-logo" src="assets/university_logo.png"/>
+<span class="top-site-name">MathConf 2026</span>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle" type="button">☰</button>
+</div>
+<nav class="top-nav" id="topNav">
+<a href="index_uk.html#about">Про конференцію</a>
+<a href="index_uk.html#topics">Напрями роботи</a>
+<a href="index_uk.html#dates">Важливі дати</a>
+<a href="index_uk.html#organisation">Оргкомітет</a>
+<a href="index_uk.html#programme">Програма</a>
+<a href="index_uk.html#results">Результати</a>
+<a href="index_uk.html#requirements">Вимоги до тез</a>
+<a href="index_uk.html#registration">Реєстрація</a>
+<a href="participants.html">Учасники</a>
+<a href="index_uk.html#contacts">Контакти</a>
+<a href="gallery_uk.html">Фотогалерея</a>
+</nav>
+<div class="top-lang">
+<span class="active-lang">UA</span> |
+<a href="gallery_en.html">EN</a>
+</div>
+</div>
 </header>
 
 <main>
@@ -44,7 +51,8 @@
       <section class="page-section" id="gallery">
         <h2>Фотогалерея</h2>
         <p>Фото зберігаються в <code>assets/images/</code>.</p>
-
+        <p><a class="link-button" href="https://depositphotos.com/folder/422604428.html" rel="noopener noreferrer" target="_blank">Відкрити колекцію на Depositphotos</a></p>
+        <p class="note">Натисніть на прев’ю, щоб відкрити збільшене фото.</p>
         <div class="city-gallery">
           <figure class="city-gallery-item">
             <img alt="ЖДУ — лівий ракурс" loading="lazy" onerror="this.onerror=null;this.src='assets/university_logo.png';" src="assets/images/zdu1.jpg"/>
@@ -64,6 +72,14 @@
   </div>
 </main>
 
+<div class="lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview dialog">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close preview">×</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImage" alt="" src=""/>
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+</div>
+
 <footer class="site-footer">
   <div class="container footer-inner">
     <p>© 2026 Міжнародна наукова конференція. ЖДУ ім. Івана Франка.</p>
@@ -75,22 +91,72 @@
   const header = document.querySelector('.top-bar');
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('topNav');
-  if(!header || !btn || !nav) return;
+  if(header && btn && nav){
+    const closeMenu = () => {
+      header.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
 
-  const closeMenu = () => {
-    header.classList.remove('nav-open');
-    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function(){
+      const isOpen = header.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.addEventListener('click', function(e){
+      const a = e.target.closest('a');
+      if(!a) return;
+      closeMenu();
+    });
+  }
+
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const previewImages = document.querySelectorAll('.city-gallery-item img');
+
+  if(!lightbox || !lightboxImage || !lightboxCaption || !lightboxClose || previewImages.length === 0) return;
+
+  const openLightbox = (img) => {
+    const caption = img.closest('figure')?.querySelector('figcaption')?.textContent?.trim() || '';
+    lightboxImage.src = img.currentSrc || img.src;
+    lightboxImage.alt = img.alt || caption;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
   };
 
-  btn.addEventListener('click', function(){
-    const isOpen = header.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+    document.body.classList.remove('no-scroll');
+  };
+
+  previewImages.forEach((img) => {
+    img.classList.add('zoomable-image');
+    img.tabIndex = 0;
+
+    img.addEventListener('click', () => openLightbox(img));
+    img.addEventListener('keydown', (event) => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
   });
 
-  nav.addEventListener('click', function(e){
-    const a = e.target.closest('a');
-    if(!a) return;
-    closeMenu();
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (event) => {
+    if(event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape' && lightbox.classList.contains('is-open')){
+      closeLightbox();
+    }
   });
 })();
 </script>
