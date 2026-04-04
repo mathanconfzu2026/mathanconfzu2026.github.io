@@ -456,3 +456,18 @@ a:hover {
   font-size: 0.9rem;
   color: #334;
 }
+
+/* Gallery pages: keep footer as a centered plaque under gallery */
+.gallery-page .site-footer {
+  background: transparent;
+  padding: 0 0 24px;
+  margin-top: 6px;
+}
+
+.gallery-page .footer-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  background-color: #00172b;
+  border-radius: 6px;
+  padding: 10px 16px;
+}
