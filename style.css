@@ -11,6 +11,9 @@ body {
     line-height: 1.6;
     color: #222;
     background-color: #f2f2f7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Бокові фонові фото університету (десктоп) */
@@ -63,6 +66,10 @@ a:hover {
     max-width: 1080px;
     margin: 0 auto;
     padding: 0 16px;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 /* ===== ВЕРХНЯ ПАНЕЛЬ ===== */
@@ -455,19 +462,4 @@ a:hover {
   padding: 8px 10px;
   font-size: 0.9rem;
   color: #334;
-}
-
-/* Gallery pages: keep footer as a centered plaque under gallery */
-.gallery-page .site-footer {
-  background: transparent;
-  padding: 0 0 24px;
-  margin-top: 6px;
-}
-
-.gallery-page .footer-inner {
-  max-width: 780px;
-  margin: 0 auto;
-  background-color: #00172b;
-  border-radius: 6px;
-  padding: 10px 16px;
 }
