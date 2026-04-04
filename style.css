@@ -524,3 +524,11 @@ main {
   color: #fff;
   font-size: 0.95rem;
 }
+
+
+.credit-link {
+    font-size: 0.82em;
+    margin-left: 6px;
+    text-decoration: underline;
+    white-space: nowrap;
+}
