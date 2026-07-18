@@ -320,23 +320,18 @@ main {
 }
 
 .participants-container {
-  max-width: min(1440px, calc(100vw - 32px));
+  width: calc(100vw - 32px);
+  max-width: none;
 }
 
 .participants-frame iframe {
   display: block;
-  min-width: 1000px;
+  min-width: 100%;
 }
 
 @media (min-width: 1200px) {
   .participants-container {
-    max-width: calc(100vw - 32px);
-    padding-left: clamp(170px, 22vw, 420px);
-    padding-right: clamp(170px, 22vw, 420px);
-  }
-
-  .participants-frame iframe {
-    min-width: 100%;
+    width: calc(100vw - 64px);
   }
 }
 
