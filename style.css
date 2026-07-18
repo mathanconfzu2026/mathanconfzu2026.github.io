@@ -331,7 +331,8 @@ main {
 
 @media (min-width: 1200px) {
   .participants-container {
-    width: calc(100vw - 64px);
+    --side-photo-width: clamp(170px, 22vw, 420px);
+    width: calc(100vw - 64px - var(--side-photo-width) - var(--side-photo-width));
   }
 }
 
