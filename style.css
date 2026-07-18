@@ -315,8 +315,31 @@ main {
 .participants-frame {
   border: 1px solid #ddd;
   border-radius: 6px;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: visible;
+}
+
+.participants-container {
+  width: calc(100vw - 32px);
+  max-width: none;
+}
+
+.participants-frame iframe {
+  display: block;
+  min-width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .participants-container {
+    --side-photo-width: clamp(170px, 22vw, 420px);
+    width: calc(100vw - 64px - var(--side-photo-width) - var(--side-photo-width));
+  }
+}
+
+@media (max-width: 768px) {
+  .participants-frame iframe {
+    min-width: 720px;
+  }
 }
 .note {
   font-size: 0.95rem;
